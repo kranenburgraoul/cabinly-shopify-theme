@@ -95,6 +95,7 @@ p  { font-size: clamp(0.9rem, 1.5vw, 1rem); line-height: 1.75; color: #4a4a4a; }
   position: relative;
   z-index: 20;
 }
+.announcement-bar p { color: #fff; margin: 0; }
 .announcement-bar strong { color: #fff; font-weight: 600; }
 .announcement-bar a { color: #fff; text-decoration: underline; }
 .announcement-bar__close {
