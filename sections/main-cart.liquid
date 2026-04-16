@@ -1,0 +1,74 @@
+<section class="section" style="background: var(--color-sand);">
+  <div class="page-width">
+    <h1 style="font-family:var(--font-display);color:var(--color-navy);margin-bottom:2.5rem;">
+      {{ 'general.cart.title' | t }}
+    </h1>
+
+    {%- if cart.item_count > 0 -%}
+      <div class="cart-layout">
+        <!-- Cart items -->
+        <div class="cart-items">
+          {%- form 'cart', cart -%}
+            {%- for item in cart.items -%}
+              <div class="cart-item">
+                <div class="cart-item__image">
+                  {%- if item.image -%}
+                    <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.image.alt | default: item.title | escape }}" loading="lazy" width="160">
+                  {%- endif -%}
+                </div>
+                <div>
+                  <a href="{{ item.url }}" class="cart-item__title">{{ item.product.title }}</a>
+                  {%- unless item.product.has_only_default_variant -%}
+                    <div class="cart-item__variant">{{ item.variant.title }}</div>
+                  {%- endunless -%}
+                  <a href="{{ item.url_to_remove }}" class="cart-item__remove">Verwijder</a>
+                </div>
+                <div class="cart-item__price">{{ item.final_line_price | money }}</div>
+              </div>
+            {%- endfor -%}
+          {%- endform -%}
+        </div>
+
+        <!-- Summary -->
+        <div class="cart-summary">
+          <h3>{{ 'general.cart.title' | t }}</h3>
+          <div class="cart-summary__row">
+            <span>{{ 'general.cart.subtotal' | t }}</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <div class="cart-summary__row">
+            <span>{{ 'general.cart.shipping' | t }}</span>
+            <span>{%- if cart.total_price >= 5000 -%}Gratis{%- else -%}Berekend bij afrekenen{%- endif -%}</span>
+          </div>
+          <div class="cart-summary__total">
+            <span>{{ 'general.cart.total' | t }}</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+
+          {%- form 'cart', cart -%}
+            <button type="submit" name="checkout" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1.5rem;padding:1rem 2rem;">
+              {{ 'general.cart.checkout' | t }}
+            </button>
+          {%- endform -%}
+
+          <a href="{{ routes.all_products_collection_url }}" style="display:block;text-align:center;margin-top:1rem;font-size:.82rem;color:#888;">
+            ← {{ 'general.cart.continue_shopping' | t }}
+          </a>
+        </div>
+      </div>
+    {%- else -%}
+      <div class="cart-empty">
+        <h2>{{ 'general.cart.empty' | t }}</h2>
+        <p style="margin-bottom:2rem;">Voeg producten toe om verder te gaan.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary">Shop nu</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": []
+}
+{% endschema %}

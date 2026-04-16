@@ -1,0 +1,77 @@
+<div class="page-hero">
+  <div class="page-width">
+    <p class="section-label">{{ collection.title }}</p>
+    <h1>
+      {%- if collection.image -%}
+        {{ collection.title }}
+      {%- else -%}
+        {{ collection.title }}
+      {%- endif -%}
+    </h1>
+    {%- if collection.description != blank -%}
+      <p class="page-hero__sub">{{ collection.description }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+<section class="section" style="background: var(--color-sand); padding-top: 2rem;">
+  <div class="page-width">
+    <div class="shop-header">
+      <div class="shop-controls">
+        <div class="filter-tags" role="group" aria-label="Filter products">
+          <button class="filter-tag is-active" data-filter="all">Alles ({{ collection.products_count }})</button>
+          {%- for tag in collection.all_tags -%}
+            <button class="filter-tag" data-filter="{{ tag | handle }}">{{ tag }}</button>
+          {%- endfor -%}
+        </div>
+        <div>
+          {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+          <select class="sort-select" onchange="location.href='?sort_by='+this.value" aria-label="Sort products">
+            <option value="manual" {% if sort_by == 'manual' %}selected{% endif %}>Aanbevolen</option>
+            <option value="best-selling" {% if sort_by == 'best-selling' %}selected{% endif %}>Bestsellers</option>
+            <option value="price-ascending" {% if sort_by == 'price-ascending' %}selected{% endif %}>Prijs: laag → hoog</option>
+            <option value="price-descending" {% if sort_by == 'price-descending' %}selected{% endif %}>Prijs: hoog → laag</option>
+            <option value="created-descending" {% if sort_by == 'created-descending' %}selected{% endif %}>Nieuwste eerst</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    {%- if collection.products.size > 0 -%}
+      <div class="product-grid" id="product-grid">
+        {%- for product in collection.products -%}
+          <div class="reveal" data-tags="{{ product.tags | join: ',' | handleize }}">
+            {% render 'product-card', product: product %}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <div style="text-align:center;margin-top:3rem;">
+          {{ paginate | default_pagination }}
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <p style="text-align:center;padding:4rem 0;color:#888;">
+        {{ 'collections.general.no_matches' | t }}
+      </p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 16
+    }
+  ]
+}
+{% endschema %}

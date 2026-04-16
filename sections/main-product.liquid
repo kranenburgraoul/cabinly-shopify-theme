@@ -1,0 +1,192 @@
+<section class="section" style="background: var(--color-sand); padding-top: 2rem;">
+  <div class="page-width">
+    <div class="product-layout">
+
+      <!-- Gallery -->
+      <div class="product-gallery">
+        <div class="product-gallery__main">
+          {%- if product.featured_image -%}
+            <img
+              id="main-product-image"
+              src="{{ product.featured_image | image_url: width: 900 }}"
+              alt="{{ product.featured_image.alt | default: product.title | escape }}"
+              loading="eager"
+              width="900">
+          {%- else -%}
+            <div class="product-card__no-image" style="height:100%;font-size:5rem;">🧳</div>
+          {%- endif -%}
+        </div>
+        {%- if product.images.size > 1 -%}
+          <div class="product-gallery__thumbs">
+            {%- for image in product.images limit: 5 -%}
+              <div class="product-gallery__thumb {% if forloop.first %}is-active{% endif %}">
+                <img
+                  src="{{ image | image_url: width: 200 }}"
+                  alt="{{ image.alt | default: product.title | escape }}"
+                  loading="lazy"
+                  width="200">
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        {%- if product.vendor -%}
+          <div class="product-info__vendor">{{ product.vendor }}</div>
+        {%- endif -%}
+
+        <h1 class="product-info__title">{{ product.title }}</h1>
+
+        {%- if product.metafields.custom.tagline -%}
+          <p class="product-info__tagline">{{ product.metafields.custom.tagline }}</p>
+        {%- endif -%}
+
+        <div class="product-info__price">
+          {%- if product.compare_at_price > product.price -%}
+            <span>{{ product.price | money }}</span>
+            <s>{{ product.compare_at_price | money }}</s>
+            <span class="sale-badge">
+              -{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%
+            </span>
+          {%- else -%}
+            {{ product.price | money }}
+          {%- endif -%}
+        </div>
+
+        {%- form 'product', product -%}
+          <!-- Variant picker -->
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              <div class="product-info__variants">
+                <div class="product-info__variants-label">{{ option.name }}</div>
+                <div class="variant-buttons" data-option-index="{{ forloop.index0 }}">
+                  {%- for value in option.values -%}
+                    <button
+                      type="button"
+                      class="variant-btn {% if option.selected_value == value %}is-selected{% endif %}"
+                      data-value="{{ value | escape }}">
+                      {{ value }}
+                    </button>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+          <!-- Quantity -->
+          <div class="product-form__quantity" role="group" aria-label="{{ 'products.product.quantity' | t }}">
+            <button type="button" data-qty-minus aria-label="Decrease quantity">–</button>
+            <input type="number" name="quantity" value="1" min="1" aria-label="{{ 'products.product.quantity' | t }}">
+            <button type="button" data-qty-plus aria-label="Increase quantity">+</button>
+          </div>
+
+          <!-- Add to cart -->
+          {%- if product.available -%}
+            <button type="submit" name="add" class="product-form__add">
+              {{ 'products.product.add_to_cart' | t }}
+            </button>
+          {%- else -%}
+            <button type="button" class="product-form__add" disabled style="opacity:.5;cursor:not-allowed;">
+              {{ 'products.product.sold_out' | t }}
+            </button>
+          {%- endif -%}
+
+        {%- endform -%}
+
+        <!-- USPs -->
+        {%- if section.settings.show_usps -%}
+          <ul class="product-info__usps" aria-label="Product benefits">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'usp' -%}
+                <li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <!-- Trust strip -->
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;padding:1.25rem 0;border-top:1px solid var(--color-stone);border-bottom:1px solid var(--color-stone);margin:1.5rem 0;">
+          <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg><span>30 dagen retour</span></div>
+          <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>2 jaar garantie</span></div>
+          <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span>Veilig betalen</span></div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="product-info__tabs">
+          {%- if product.description != blank -%}
+            <div class="product-tab">
+              <button class="product-tab__trigger" aria-expanded="false">
+                {{ 'products.product.description' | t }}
+                <span aria-hidden="true">+</span>
+              </button>
+              <div class="product-tab__content rte">{{ product.description }}</div>
+            </div>
+          {%- endif -%}
+
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'tab' -%}
+              <div class="product-tab" {{ block.shopify_attributes }}>
+                <button class="product-tab__trigger" aria-expanded="false">
+                  {{ block.settings.title }}
+                  <span aria-hidden="true">+</span>
+                </button>
+                <div class="product-tab__content">{{ block.settings.content }}</div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product information",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_usps",
+      "label": "Show USP bullets",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "usp",
+      "name": "USP bullet",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "USP text",
+          "default": "Premium kwaliteit materialen"
+        }
+      ]
+    },
+    {
+      "type": "tab",
+      "name": "Product tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title",
+          "default": "Specificaties"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Tab content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

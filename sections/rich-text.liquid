@@ -1,0 +1,88 @@
+<section class="section" style="background:{% if section.settings.background == 'navy' %}var(--color-navy){% elsif section.settings.background == 'white' %}#fff{% else %}var(--color-sand){% endif %};">
+  <div class="page-width" style="max-width:720px;text-align:{% if section.settings.text_align == 'center' %}center{% else %}left{% endif %};">
+    {%- if section.settings.label != blank -%}
+      <p class="section-label {% if section.settings.text_align == 'center' %}section-label--center{% endif %}"
+         style="{% if section.settings.background == 'navy' %}color:var(--color-olive){% endif %}">
+        {{ section.settings.label }}
+      </p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 style="margin-top:.5rem;{% if section.settings.background == 'navy' %}color:var(--color-sand);font-weight:300;font-style:italic;{% endif %}">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="rte" style="margin-top:1.5rem;{% if section.settings.background == 'navy' %}color:rgba(245,241,232,0.65){% endif %}">
+        {{ section.settings.text }}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.cta_label != blank -%}
+      <a href="{{ section.settings.cta_link | default: '#' }}"
+         class="btn {% if section.settings.background == 'navy' %}btn-outline{% else %}btn-primary{% endif %}"
+         style="margin-top:2rem;">
+        {{ section.settings.cta_label }}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Rich text",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "sand", "label": "Sand" },
+        { "value": "white", "label": "White" },
+        { "value": "navy", "label": "Navy (dark)" }
+      ],
+      "default": "navy"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Onze missie"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "\"Slimmer inpakken, minder stress, meer genieten.\""
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich text"
+    }
+  ]
+}
+{% endschema %}

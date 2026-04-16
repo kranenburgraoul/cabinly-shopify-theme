@@ -1,0 +1,16 @@
+{
+  "current": {
+    "color_navy": "#1F3554",
+    "color_sand": "#F5F1E8",
+    "color_charcoal": "#2B2B2B",
+    "color_olive": "#7A826A",
+    "color_stone": "#D9D4CB",
+    "font_heading": "cormorant_garamond_n4",
+    "font_body": "outfit_n4",
+    "font_size_base": 16,
+    "page_width": "1200px",
+    "brand_name": "Cabinly",
+    "cart_type": "page",
+    "logo_height": 40
+  }
+}

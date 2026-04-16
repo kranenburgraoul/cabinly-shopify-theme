@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="{{ settings.color_navy }}">
+
+  <title>
+    {{ page_title }}{% if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif %}
+    {% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  {% if settings.favicon %}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32 }}">
+  {% endif %}
+
+  <!-- Canonical & OG -->
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta property="og:site_name" content="{{ shop.name }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:title" content="{{ page_title | escape }}">
+  {% if page_description %}
+    <meta property="og:description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS variables from theme settings -->
+  <style>
+    :root {
+      --color-navy:    {{ settings.color_navy }};
+      --color-sand:    {{ settings.color_sand }};
+      --color-charcoal:{{ settings.color_charcoal }};
+      --color-olive:   {{ settings.color_olive }};
+      --color-stone:   {{ settings.color_stone }};
+      --font-display:  'Cormorant Garamond', Georgia, serif;
+      --font-body:     'Outfit', system-ui, sans-serif;
+      --page-width:    {{ settings.page_width }};
+      --logo-height:   {{ settings.logo_height }}px;
+    }
+  </style>
+
+  {{ content_for_header }}
+
+  {{ 'cabinly.css' | asset_url | stylesheet_tag }}
+</head>
+
+<body>
+
+  {% sections 'header-group' %}
+
+  <main id="main-content" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% sections 'footer-group' %}
+
+  <!-- Mobile nav overlay -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <div class="mobile-nav__header">
+      <a href="{{ routes.root_url }}" class="header__logo" aria-label="{{ shop.name }}">
+        {% if settings.logo %}
+          <img src="{{ settings.logo | image_url: height: 40 }}" alt="{{ shop.name }}" style="max-height:40px;">
+        {% else %}
+          {{ settings.brand_name | default: shop.name | split: '' | first }}
+          <span>{{ settings.brand_name | default: shop.name | slice: 1, 100 }}</span>
+        {% endif %}
+      </a>
+      <button class="mobile-nav__close" onclick="cabinlyCloseNav()" aria-label="Close menu">✕</button>
+    </div>
+    <ul class="mobile-nav__links">
+      {% for link in linklists.main-menu.links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <script src="{{ 'cabinly.js' | asset_url }}" defer></script>
+</body>
+</html>

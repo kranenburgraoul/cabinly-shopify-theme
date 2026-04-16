@@ -1,0 +1,21 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {
+        "enabled": true,
+        "text": "<p><strong>Gratis verzending<\/strong> bij bestellingen boven de \u20ac50 \u00b7 30 dagen retourgarantie<\/p>",
+        "show_close": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    }
+  },
+  "order": ["announcement-bar", "header"]
+}

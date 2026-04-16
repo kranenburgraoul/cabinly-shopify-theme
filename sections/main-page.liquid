@@ -1,0 +1,19 @@
+<div class="page-hero">
+  <div class="page-width">
+    <p class="section-label">{{ page.title }}</p>
+    <h1>{{ page.title }}</h1>
+  </div>
+</div>
+
+<section class="section" style="background: var(--color-sand);">
+  <div class="page-width" style="max-width:760px;">
+    <div class="rte">{{ page.content }}</div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page",
+  "settings": []
+}
+{% endschema %}

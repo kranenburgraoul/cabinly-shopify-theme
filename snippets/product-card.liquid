@@ -1,0 +1,88 @@
+{% comment %}
+  Renders a product card.
+  Usage: {% render 'product-card', product: product %}
+{% endcomment %}
+
+{%- liquid
+  assign badge_label = ''
+  if product.available == false
+    assign badge_label = 'Uitverkocht'
+    assign badge_class = 'product-card__badge--sold-out'
+  elsif product.compare_at_price > product.price
+    assign badge_label = 'Sale'
+    assign badge_class = 'product-card__badge--sale'
+  elsif product.tags contains 'bestseller'
+    assign badge_label = 'Bestseller'
+    assign badge_class = 'product-card__badge--bestseller'
+  elsif product.tags contains 'new'
+    assign badge_label = 'Nieuw'
+    assign badge_class = ''
+  endif
+-%}
+
+<div class="product-card"
+     data-type="{{ product.type | handle }}"
+     data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+  <a href="{{ product.url }}" class="product-card__media-link" tabindex="-1" aria-hidden="true">
+    <div class="product-card__media">
+      {% if product.featured_image %}
+        <img
+          src="{{ product.featured_image | image_url: width: 600 }}"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
+          loading="lazy"
+          width="600"
+          height="600">
+      {% else %}
+        <div class="product-card__no-image">
+          {%- case product.type -%}
+            {%- when 'Comfort' -%}✈️
+            {%- when 'Essentials' -%}⚡
+            {%- else -%}🧳
+          {%- endcase -%}
+        </div>
+      {% endif %}
+
+      {% if badge_label != '' %}
+        <span class="product-card__badge {{ badge_class }}">{{ badge_label }}</span>
+      {% endif %}
+    </div>
+  </a>
+
+  <div class="product-card__body">
+    {% if product.vendor %}
+      <div class="product-card__vendor">{{ product.vendor }}</div>
+    {% endif %}
+
+    <a href="{{ product.url }}" class="product-card__title">{{ product.title }}</a>
+
+    {% if product.metafields.custom.tagline %}
+      <p class="product-card__tagline">{{ product.metafields.custom.tagline }}</p>
+    {% endif %}
+
+    <div class="product-card__footer">
+      <div class="product-card__price">
+        {% if product.compare_at_price > product.price %}
+          <span>{{ product.price | money }}</span>
+          <s>{{ product.compare_at_price | money }}</s>
+        {% else %}
+          {{ product.price | money }}
+        {% endif %}
+      </div>
+
+      {% if product.available %}
+        <button
+          class="product-card__add"
+          data-product-id="{{ product.id }}"
+          title="{{ 'products.product.add_to_cart' | t }}"
+          aria-label="{{ 'products.product.add_to_cart' | t }}: {{ product.title | escape }}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" x2="12" y1="5" y2="19"/>
+            <line x1="5" x2="19" y1="12" y2="12"/>
+          </svg>
+        </button>
+      {% else %}
+        <span style="font-size:.75rem;color:#888;">{{ 'products.product.sold_out' | t }}</span>
+      {% endif %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "page_hero": {
+      "type": "page-hero",
+      "settings": {
+        "label": "Contact",
+        "heading": "Wij helpen je graag verder.",
+        "subtext": "Heb je een vraag over een bestelling, product of iets anders? Stuur ons een bericht en we reageren binnen één werkdag."
+      }
+    },
+    "contact": {
+      "type": "contact-section",
+      "settings": {
+        "info_heading": "Neem contact op",
+        "info_text": "We zijn er voor je — stuur ons een bericht en we reageren binnen één werkdag.",
+        "faq_heading": "Veelgestelde vragen",
+        "form_heading": "Stuur een bericht"
+      },
+      "blocks": {
+        "detail_1": { "type": "contact_detail", "settings": { "icon": "✉", "title": "E-mail", "text": "hallo@cabinly.nl" } },
+        "detail_2": { "type": "contact_detail", "settings": { "icon": "🕐", "title": "Openingstijden", "text": "Maandag t/m vrijdag: 9:00 \u2013 17:00" } },
+        "detail_3": { "type": "contact_detail", "settings": { "icon": "📦", "title": "Reactietijd", "text": "Binnen 1 werkdag" } },
+        "faq_1": { "type": "faq_item", "settings": { "question": "Hoe lang duurt verzending?", "answer": "Bestellingen worden binnen 1-2 werkdagen verstuurd. Bezorging duurt gemiddeld 2-4 werkdagen binnen Nederland." } },
+        "faq_2": { "type": "faq_item", "settings": { "question": "Kan ik mijn bestelling retourneren?", "answer": "Ja, je hebt 30 dagen om je bestelling te retourneren. Het product moet ongebruikt en in de originele verpakking zijn." } },
+        "faq_3": { "type": "faq_item", "settings": { "question": "Wat zijn de betaalopties?", "answer": "We accepteren iDEAL, creditcard (Visa/Mastercard), PayPal en Klarna. Alle betalingen zijn beveiligd." } },
+        "faq_4": { "type": "faq_item", "settings": { "question": "Leveren jullie ook buiten Nederland?", "answer": "Ja! We leveren in heel Europa. Gratis verzending geldt voor bestellingen boven \u20ac50 binnen Nederland." } }
+      },
+      "block_order": ["detail_1", "detail_2", "detail_3", "faq_1", "faq_2", "faq_3", "faq_4"]
+    },
+    "reassurance": {
+      "type": "reassurance-strip",
+      "blocks": {
+        "r1": { "type": "item", "settings": { "icon": "⚡", "title": "Snelle reactie", "text": "Binnen 1 werkdag" } },
+        "r2": { "type": "item", "settings": { "icon": "🤝", "title": "Persoonlijke service", "text": "Echt een mens \u2014 geen bot" } },
+        "r3": { "type": "item", "settings": { "icon": "✅", "title": "Altijd opgelost", "text": "100% klanttevredenheid" } }
+      },
+      "block_order": ["r1", "r2", "r3"]
+    }
+  },
+  "order": ["page_hero", "contact", "reassurance"]
+}

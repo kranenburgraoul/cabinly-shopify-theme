@@ -1,0 +1,57 @@
+<div class="reassurance-strip">
+  <div class="page-width">
+    <div class="reassurance-grid">
+      {% for block in section.blocks %}
+        <div class="reveal reveal-d{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <div class="reassurance-item__icon" aria-hidden="true">{{ block.settings.icon }}</div>
+          <div class="reassurance-item__title">{{ block.settings.title }}</div>
+          <div class="reassurance-item__text">{{ block.settings.text }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Reassurance strip",
+  "max_blocks": 4,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Reassurance item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji icon",
+          "default": "⚡"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Snelle reactie"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Binnen 1 werkdag"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reassurance strip",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "⚡", "title": "Snelle reactie", "text": "Binnen 1 werkdag" } },
+        { "type": "item", "settings": { "icon": "🤝", "title": "Persoonlijke service", "text": "Echt een mens — geen bot" } },
+        { "type": "item", "settings": { "icon": "✅", "title": "Altijd opgelost", "text": "100% klanttevredenheid" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

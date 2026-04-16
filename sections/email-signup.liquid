@@ -1,0 +1,79 @@
+<section class="email-signup">
+  <div class="page-width">
+    {%- if section.settings.label != blank -%}
+      <p class="section-label section-label--center" style="color:var(--color-olive);margin-bottom:.75rem;">{{ section.settings.label }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2>{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subtext != blank -%}
+      <p>{{ section.settings.subtext }}</p>
+    {%- endif -%}
+
+    {% form 'customer' %}
+      {{ form.errors | default_errors }}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="email-form">
+        <input
+          type="email"
+          name="contact[email]"
+          placeholder="{{ section.settings.placeholder | default: 'jouw@email.com' }}"
+          required
+          aria-label="{{ 'general.newsletter.label' | t }}">
+        <button type="submit">{{ section.settings.button_label | default: 'Aanmelden' }}</button>
+      </div>
+      {%- if form.posted_successfully? -%}
+        <p class="email-signup__success is-visible">{{ section.settings.success_message | default: 'Bedankt voor je aanmelding!' }}</p>
+      {%- endif -%}
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Email signup",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section label",
+      "default": "Blijf op de hoogte"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Reis slimmer. Ontvang als eerste de deals."
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Exclusieve aanbiedingen, nieuwe producten en travel tips — direct in je inbox."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input placeholder",
+      "default": "jouw@email.com"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Aanmelden"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Bedankt! Je staat nu op de lijst."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Email signup"
+    }
+  ]
+}
+{% endschema %}

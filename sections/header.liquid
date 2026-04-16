@@ -1,0 +1,76 @@
+<header class="site-header" id="site-header" role="banner">
+  <div class="page-width">
+    <div class="header-inner">
+
+      <!-- Logo -->
+      <a href="{{ routes.root_url }}" class="header__logo" aria-label="{{ shop.name }}">
+        {% if settings.logo %}
+          <img
+            src="{{ settings.logo | image_url: height: settings.logo_height }}"
+            alt="{{ shop.name }}"
+            style="max-height: {{ settings.logo_height }}px;"
+            width="{{ settings.logo | image_url: height: settings.logo_height | split: 'width=' | last | split: '&' | first }}"
+            height="{{ settings.logo_height }}"
+            loading="eager">
+        {% else %}
+          {%- assign brand = settings.brand_name | default: shop.name -%}
+          {{ brand | slice: 0, brand.size | minus: 2 }}<span>{{ brand | slice: brand.size | minus: 2, 2 }}</span>
+        {% endif %}
+      </a>
+
+      <!-- Navigation -->
+      <nav aria-label="Main navigation">
+        <ul class="header-nav" role="list">
+          {% for link in linklists[section.settings.menu].links %}
+            <li>
+              <a href="{{ link.url }}"
+                 {% if link.active %}aria-current="page"{% endif %}>
+                {{ link.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <!-- Actions -->
+      <div class="header-actions">
+        <a href="{{ routes.search_url }}" class="header-actions__icon" aria-label="{{ 'general.search.search' | t }}">
+          {% render 'icon', icon: 'search' %}
+        </a>
+
+        {% if shop.customer_accounts_enabled %}
+          <a href="{{ routes.account_url }}" class="header-actions__icon" aria-label="Account">
+            {% render 'icon', icon: 'account' %}
+          </a>
+        {% endif %}
+
+        <a href="{{ routes.cart_url }}" class="header-actions__icon header-actions__icon--cart" aria-label="{{ 'sections.header.cart' | t }} ({{ cart.item_count }})">
+          {% render 'icon', icon: 'cart' %}
+          <span class="cart-count" {% if cart.item_count == 0 %}style="display:none"{% endif %}>
+            {{ cart.item_count }}
+          </span>
+        </a>
+
+        <button class="header__burger" onclick="cabinlyOpenNav()" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

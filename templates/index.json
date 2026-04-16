@@ -1,0 +1,148 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "Travel essentials",
+        "heading": "Pack smarter.",
+        "heading_bold": "Travel better.",
+        "subtext": "Cabinly maakt reizen rustiger, overzichtelijker en comfortabeler — met essentials die écht werken.",
+        "cta_label": "Shop collectie",
+        "cta_label_2": "Ons verhaal"
+      }
+    },
+    "trust_bar": {
+      "type": "trust-bar",
+      "blocks": {
+        "trust_1": { "type": "trust_item", "settings": { "icon": "shipping", "text": "Gratis verzending v.a. \u20ac50" } },
+        "trust_2": { "type": "trust_item", "settings": { "icon": "return", "text": "30 dagen retour" } },
+        "trust_3": { "type": "trust_item", "settings": { "icon": "shield", "text": "2 jaar garantie" } },
+        "trust_4": { "type": "trust_item", "settings": { "icon": "card", "text": "Veilig betalen" } }
+      },
+      "block_order": ["trust_1", "trust_2", "trust_3", "trust_4"]
+    },
+    "categories": {
+      "type": "category-cards",
+      "settings": {
+        "label": "Shop per categorie",
+        "heading": "Wat heb jij nodig onderweg?"
+      },
+      "blocks": {
+        "cat_1": {
+          "type": "category",
+          "settings": {
+            "icon": "🗂️",
+            "title": "Organiseer",
+            "description": "Alles op zijn plek. Geen chaos meer in je koffer.",
+            "background_gradient": "linear-gradient(160deg, #2a4060 0%, #1F3554 100%)",
+            "link_label": "Bekijk producten"
+          }
+        },
+        "cat_2": {
+          "type": "category",
+          "settings": {
+            "icon": "✈️",
+            "title": "Comfort",
+            "description": "Rustiger aankomen. Beter slapen. Minder stress.",
+            "background_gradient": "linear-gradient(160deg, #3d4a38 0%, #7A826A 100%)",
+            "link_label": "Bekijk producten"
+          }
+        },
+        "cat_3": {
+          "type": "category",
+          "settings": {
+            "icon": "⚡",
+            "title": "Essentials",
+            "description": "De basics die elke reiziger bij zich moet hebben.",
+            "background_gradient": "linear-gradient(160deg, #4a3d30 0%, #6b5a45 100%)",
+            "link_label": "Bekijk producten"
+          }
+        }
+      },
+      "block_order": ["cat_1", "cat_2", "cat_3"]
+    },
+    "featured_products": {
+      "type": "featured-collection",
+      "settings": {
+        "label": "Bestsellers",
+        "heading": "De favorieten van onze reizigers",
+        "products_to_show": 4,
+        "show_view_all": true,
+        "view_all_label": "Alle producten",
+        "background": "white"
+      }
+    },
+    "brand_story": {
+      "type": "brand-story",
+      "settings": {
+        "label": "Ons verhaal",
+        "heading": "Wij verkopen geen reisproducten.",
+        "text_1": "We helpen reizigers om met minder chaos, meer overzicht en meer gemak op reis te gaan. Dat is het verschil.",
+        "text_2": "Elk Cabinly product is ontworpen met één doel: jouw reis rustiger, slimmer en comfortabeler maken.",
+        "cta_label": "Lees ons verhaal"
+      },
+      "blocks": {
+        "stat_1": { "type": "stat", "settings": { "number": "50k+", "label": "tevreden reizigers" } },
+        "stat_2": { "type": "stat", "settings": { "number": "4.9\u2605", "label": "gemiddelde review" } },
+        "stat_3": { "type": "stat", "settings": { "number": "150+", "label": "landen bereikbaar" } },
+        "stat_4": { "type": "stat", "settings": { "number": "8", "label": "essenti\u00eble producten" } }
+      },
+      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "label": "Reviews",
+        "heading": "Wat onze reizigers zeggen"
+      },
+      "blocks": {
+        "rev_1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Eindelijk een merk dat het snapt. Mijn Cabinly packing cubes hebben compleet veranderd hoe ik inpak. Nooit meer chaos in mijn koffer.",
+            "author": "Sophie K.",
+            "detail": "Citytrip lover \u00b7 Amsterdam"
+          }
+        },
+        "rev_2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "De toilettas is perfect. Alles past erin en hij hangt in elke badkamer. Precies wat ik zocht voor mijn zakenreizen.",
+            "author": "Marcus V.",
+            "detail": "Frequent flyer \u00b7 Rotterdam"
+          }
+        },
+        "rev_3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Drie travel adapters besteld voor een familiereis. Allemaal perfect gewerkt in 4 landen. Topkwaliteit voor een eerlijke prijs.",
+            "author": "Lena B.",
+            "detail": "Gezinsreiziger \u00b7 Utrecht"
+          }
+        }
+      },
+      "block_order": ["rev_1", "rev_2", "rev_3"]
+    },
+    "email_signup": {
+      "type": "email-signup",
+      "settings": {
+        "label": "Blijf op de hoogte",
+        "heading": "Reis slimmer. Ontvang als eerste de deals.",
+        "subtext": "Exclusieve aanbiedingen, nieuwe producten en travel tips — direct in je inbox.",
+        "button_label": "Aanmelden"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "trust_bar",
+    "categories",
+    "featured_products",
+    "brand_story",
+    "testimonials",
+    "email_signup"
+  ]
+}

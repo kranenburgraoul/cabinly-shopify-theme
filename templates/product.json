@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "show_usps": true
+      },
+      "blocks": {
+        "usp_1": { "type": "usp", "settings": { "text": "Premium kwaliteit materialen" } },
+        "usp_2": { "type": "usp", "settings": { "text": "Lichtgewicht en compact" } },
+        "usp_3": { "type": "usp", "settings": { "text": "Ontworpen voor handbagage reizen" } },
+        "tab_1": {
+          "type": "tab",
+          "settings": {
+            "title": "Wat zit er in de verpakking",
+            "content": "<p>Zie de productbeschrijving voor volledige inhoud.</p>"
+          }
+        },
+        "tab_2": {
+          "type": "tab",
+          "settings": {
+            "title": "Materialen & zorg",
+            "content": "<p>Vochtig afvegen met een schone doek. Niet in de wasmachine.</p>"
+          }
+        }
+      },
+      "block_order": ["usp_1", "usp_2", "usp_3", "tab_1", "tab_2"]
+    }
+  },
+  "order": ["main"]
+}

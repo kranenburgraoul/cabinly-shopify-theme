@@ -1,0 +1,137 @@
+<section class="section" style="background: {% if section.settings.background == 'navy' %}var(--color-navy){% elsif section.settings.background == 'white' %}#fff{% else %}var(--color-sand){% endif %};">
+  <div class="page-width">
+    <div class="image-with-text {% if section.settings.image_position == 'right' %}image-with-text--reverse{% endif %}">
+      <div class="image-with-text__media reveal">
+        <div class="image-with-text__media-inner">
+          {%- if section.settings.image -%}
+            <img
+              src="{{ section.settings.image | image_url: width: 800 }}"
+              alt="{{ section.settings.image.alt | default: section.settings.heading }}"
+              loading="lazy"
+              width="800">
+          {%- else -%}
+            <div class="image-with-text__media-placeholder" aria-hidden="true">
+              {{ section.settings.placeholder_emoji | default: '✈️' }}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.show_accent and section.settings.accent_emoji != blank -%}
+            <div class="image-with-text__accent" aria-hidden="true">{{ section.settings.accent_emoji }}</div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="image-with-text__content reveal reveal-d2" style="{% if section.settings.background == 'navy' %}color:var(--color-sand){% endif %}">
+        {%- if section.settings.label != blank -%}
+          <p class="section-label">{{ section.settings.label }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 style="margin-top:0.5rem;{% if section.settings.background == 'navy' %}color:var(--color-sand){% endif %}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text_1 != blank -%}
+          <p style="margin-top:1.5rem;{% if section.settings.background == 'navy' %}color:rgba(245,241,232,0.65){% endif %}">{{ section.settings.text_1 }}</p>
+        {%- endif -%}
+        {%- if section.settings.text_2 != blank -%}
+          <p style="{% if section.settings.background == 'navy' %}color:rgba(245,241,232,0.65){% endif %}">{{ section.settings.text_2 }}</p>
+        {%- endif -%}
+        {%- if section.settings.cta_label != blank -%}
+          <a href="{{ section.settings.cta_link | default: '#' }}"
+             class="btn {% if section.settings.background == 'navy' %}btn-outline{% else %}btn-primary{% endif %}"
+             style="margin-top:2rem;">
+            {{ section.settings.cta_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_emoji",
+      "label": "Placeholder emoji (if no image)",
+      "default": "✈️"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_accent",
+      "label": "Show accent block",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "accent_emoji",
+      "label": "Accent emoji",
+      "default": "🧳"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "sand", "label": "Sand" },
+        { "value": "white", "label": "White" },
+        { "value": "navy", "label": "Navy (dark)" }
+      ],
+      "default": "sand"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section label",
+      "default": "Hoe het begon"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Gebouwd door reizigers, voor reizigers."
+    },
+    {
+      "type": "textarea",
+      "id": "text_1",
+      "label": "Paragraph 1",
+      "default": "Cabinly begon met een simpele frustratie: waarom is het zo moeilijk om goede, stijlvolle en functionele travel essentials te vinden?"
+    },
+    {
+      "type": "textarea",
+      "id": "text_2",
+      "label": "Paragraph 2"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Bekijk de collectie"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with text"
+    }
+  ]
+}
+{% endschema %}

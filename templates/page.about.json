@@ -1,0 +1,67 @@
+{
+  "sections": {
+    "page_hero": {
+      "type": "page-hero",
+      "settings": {
+        "label": "Ons verhaal",
+        "heading": "Wij verkopen geen reisproducten.",
+        "subtext": "We helpen reizigers om met minder chaos, meer overzicht en meer gemak op reis te gaan."
+      }
+    },
+    "story": {
+      "type": "image-with-text",
+      "settings": {
+        "image_position": "left",
+        "background": "sand",
+        "placeholder_emoji": "✈️",
+        "show_accent": true,
+        "accent_emoji": "🧳",
+        "label": "Hoe het begon",
+        "heading": "Gebouwd door reizigers, voor reizigers.",
+        "text_1": "Cabinly begon met een simpele frustratie: waarom is het zo moeilijk om goede, stijlvolle en functionele travel essentials te vinden die ook echt betaalbaar zijn?",
+        "text_2": "We zochten naar producten die niet eruitzagen als generieke gadgets, maar die tegelijkertijd wél deden wat ze moesten doen. Dat konden we niet vinden. Dus maakten we ze zelf.",
+        "cta_label": "Bekijk de collectie"
+      }
+    },
+    "mission": {
+      "type": "rich-text",
+      "settings": {
+        "background": "navy",
+        "text_align": "center",
+        "label": "Onze missie",
+        "heading": "\"Slimmer inpakken, minder stress, meer genieten.\""
+      }
+    },
+    "values": {
+      "type": "values-grid",
+      "settings": {
+        "label": "Waar wij voor staan",
+        "heading": "Onze waarden"
+      },
+      "blocks": {
+        "val_1": { "type": "value", "settings": { "icon": "🎯", "title": "Functionaliteit eerst", "text": "Elk product moet een echt probleem oplossen." } },
+        "val_2": { "type": "value", "settings": { "icon": "✨", "title": "Design met zorg", "text": "Premium hoeft niet duur te zijn. We geloven in eerlijke prijzen voor goed ontworpen producten." } },
+        "val_3": { "type": "value", "settings": { "icon": "🌿", "title": "Bewust ondernemen", "text": "We kiezen voor verantwoorde materialen en duurzame verpakkingen waar mogelijk." } },
+        "val_4": { "type": "value", "settings": { "icon": "🤝", "title": "Eerlijke service", "text": "30 dagen retourgarantie, 2 jaar productgarantie en een team dat echt bereikbaar is." } },
+        "val_5": { "type": "value", "settings": { "icon": "📦", "title": "Snel geleverd", "text": "Gratis verzending op bestellingen boven \u20ac50." } },
+        "val_6": { "type": "value", "settings": { "icon": "💬", "title": "Luisteren naar reizigers", "text": "Continu verbeterd op basis van echte feedback van onze community." } }
+      },
+      "block_order": ["val_1", "val_2", "val_3", "val_4", "val_5", "val_6"]
+    },
+    "stats": {
+      "type": "stats-row",
+      "settings": {
+        "label": "In cijfers",
+        "heading": "Cabinly in cijfers"
+      },
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "number": "50k+", "label": "Tevreden reizigers" } },
+        "s2": { "type": "stat", "settings": { "number": "4.9\u2605", "label": "Gemiddelde beoordeling" } },
+        "s3": { "type": "stat", "settings": { "number": "150+", "label": "Landen bereikbaar" } },
+        "s4": { "type": "stat", "settings": { "number": "8", "label": "Essenti\u00eble producten" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"]
+    }
+  },
+  "order": ["page_hero", "story", "mission", "values", "stats"]
+}

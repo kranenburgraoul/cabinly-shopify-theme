@@ -1,0 +1,191 @@
+<section class="section" style="background: var(--color-sand);">
+  <div class="page-width">
+    <div class="contact-layout">
+
+      <!-- Info & FAQ -->
+      <div class="reveal">
+        <div class="contact-info">
+          <h3>{{ section.settings.info_heading | default: 'Neem contact op' }}</h3>
+          <p>{{ section.settings.info_text | default: 'We zijn er voor je — stuur ons een bericht en we reageren binnen één werkdag.' }}</p>
+
+          {% for block in section.blocks %}
+            {% if block.type == 'contact_detail' %}
+              <div class="contact-detail" {{ block.shopify_attributes }}>
+                <div class="contact-detail__icon" aria-hidden="true">{{ block.settings.icon }}</div>
+                <div>
+                  <strong style="font-size:.82rem;letter-spacing:.04em;display:block;margin-bottom:.2rem;">{{ block.settings.title }}</strong>
+                  <span>{{ block.settings.text }}</span>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {%- assign faq_blocks = section.blocks | where: 'type', 'faq_item' -%}
+        {%- if faq_blocks.size > 0 -%}
+          <div style="margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--color-stone);">
+            <h4 style="font-family:var(--font-display);font-size:1.3rem;color:var(--color-navy);margin-bottom:1.5rem;">
+              {{ section.settings.faq_heading | default: 'Veelgestelde vragen' }}
+            </h4>
+            <div class="faq-list">
+              {% for block in section.blocks %}
+                {% if block.type == 'faq_item' %}
+                  <div class="faq-item" {{ block.shopify_attributes }}>
+                    <button class="faq-item__trigger" aria-expanded="false">
+                      {{ block.settings.question }}
+                      <span class="icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-item__content">{{ block.settings.answer }}</div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-block reveal reveal-d2">
+        <h3>{{ section.settings.form_heading | default: 'Stuur een bericht' }}</h3>
+
+        {% form 'contact' %}
+          {{ form.errors | default_errors }}
+
+          <div class="field-row">
+            <div class="field">
+              <label class="field__label" for="contact-first-name-{{ section.id }}">Voornaam</label>
+              <input class="field__input" type="text" id="contact-first-name-{{ section.id }}" name="contact[first-name]" autocomplete="given-name">
+            </div>
+            <div class="field">
+              <label class="field__label" for="contact-last-name-{{ section.id }}">Achternaam</label>
+              <input class="field__input" type="text" id="contact-last-name-{{ section.id }}" name="contact[last-name]" autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="contact-email-{{ section.id }}">{{ 'contact.form.email' | t }}</label>
+            <input class="field__input" type="email" id="contact-email-{{ section.id }}" name="contact[email]" required autocomplete="email" value="{{ form.email }}">
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="contact-subject-{{ section.id }}">Onderwerp</label>
+            <select class="field__select" id="contact-subject-{{ section.id }}" name="contact[subject]">
+              <option value="">Kies een onderwerp</option>
+              <option value="order">Vraag over mijn bestelling</option>
+              <option value="product">Vraag over een product</option>
+              <option value="return">Retourneren</option>
+              <option value="shipping">Verzending & levering</option>
+              <option value="other">Overig</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="contact-message-{{ section.id }}">{{ 'contact.form.message' | t }}</label>
+            <textarea class="field__textarea" id="contact-message-{{ section.id }}" name="contact[body]" required>{{ form.body }}</textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+            {{ 'contact.form.submit' | t }}
+          </button>
+
+          {%- if form.posted_successfully? -%}
+            <p style="margin-top:1.5rem;padding:1rem 1.25rem;background:rgba(122,130,106,0.12);border:1px solid var(--color-olive);border-radius:2px;color:var(--color-olive);font-size:.88rem;text-align:center;">
+              ✓ Bedankt voor je bericht! We reageren binnen één werkdag.
+            </p>
+          {%- endif -%}
+        {% endform %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Info heading",
+      "default": "Neem contact op"
+    },
+    {
+      "type": "textarea",
+      "id": "info_text",
+      "label": "Info text",
+      "default": "We zijn er voor je — stuur ons een bericht en we reageren binnen één werkdag."
+    },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "FAQ heading",
+      "default": "Veelgestelde vragen"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Stuur een bericht"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "contact_detail",
+      "name": "Contact detail",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji icon",
+          "default": "✉"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "E-mail"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Content",
+          "default": "hallo@cabinly.nl"
+        }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Hoe lang duurt verzending?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Bestellingen worden binnen 1-2 werkdagen verstuurd. Bezorging duurt gemiddeld 2-4 werkdagen binnen Nederland."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact section",
+      "blocks": [
+        { "type": "contact_detail", "settings": { "icon": "✉", "title": "E-mail", "text": "hallo@cabinly.nl" } },
+        { "type": "contact_detail", "settings": { "icon": "🕐", "title": "Openingstijden", "text": "Maandag t/m vrijdag: 9:00 – 17:00" } },
+        { "type": "contact_detail", "settings": { "icon": "📦", "title": "Reactietijd", "text": "Binnen 1 werkdag" } },
+        { "type": "faq_item", "settings": { "question": "Hoe lang duurt verzending?", "answer": "Bestellingen worden binnen 1-2 werkdagen verstuurd. Bezorging duurt gemiddeld 2-4 werkdagen binnen Nederland." } },
+        { "type": "faq_item", "settings": { "question": "Kan ik mijn bestelling retourneren?", "answer": "Ja, je hebt 30 dagen om je bestelling te retourneren. Het product moet ongebruikt en in de originele verpakking zijn." } },
+        { "type": "faq_item", "settings": { "question": "Wat zijn de betaalopties?", "answer": "We accepteren iDEAL, creditcard (Visa/Mastercard), PayPal en Klarna. Alle betalingen zijn beveiligd." } },
+        { "type": "faq_item", "settings": { "question": "Leveren jullie ook buiten Nederland?", "answer": "Ja! We leveren in heel Europa. Gratis verzending geldt voor bestellingen boven €50 binnen Nederland." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

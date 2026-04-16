@@ -1,0 +1,17 @@
+<section class="section" style="background: var(--color-sand);">
+  <div class="page-width">
+    <div class="not-found">
+      <h1 aria-hidden="true">404</h1>
+      <h2>{{ '404.title' | t }}</h2>
+      <p style="margin-bottom:2rem;">{{ '404.subtext' | t }}</p>
+      <a href="{{ routes.root_url }}" class="btn btn-primary">{{ '404.link' | t }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "404 page",
+  "settings": []
+}
+{% endschema %}

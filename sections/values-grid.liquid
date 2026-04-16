@@ -1,0 +1,83 @@
+<section class="section" style="background:#fff;">
+  <div class="page-width">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+      {%- if section.settings.label != blank -%}
+        <p class="section-label section-label--center">{{ section.settings.label }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+    </div>
+    <div class="values-grid">
+      {% for block in section.blocks %}
+        <div class="value-card reveal reveal-d{{ forloop.index | modulo: 3 | plus: 1 }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != blank -%}
+            <span class="value-card__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+          {%- endif -%}
+          <h4>{{ block.settings.title }}</h4>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Values grid",
+  "max_blocks": 9,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section label",
+      "default": "Waar wij voor staan"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Onze waarden"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji icon",
+          "default": "🎯"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Functionaliteit eerst"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Elk product moet een echt probleem oplossen."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Values grid",
+      "blocks": [
+        { "type": "value", "settings": { "icon": "🎯", "title": "Functionaliteit eerst", "text": "Elk product moet een echt probleem oplossen. We voegen niets toe dat niet een duidelijk nut heeft voor de reiziger." } },
+        { "type": "value", "settings": { "icon": "✨", "title": "Design met zorg", "text": "Premium hoeft niet duur te zijn. We geloven in eerlijke prijzen voor goed ontworpen producten." } },
+        { "type": "value", "settings": { "icon": "🌿", "title": "Bewust ondernemen", "text": "We kiezen voor verantwoorde materialen en duurzame verpakkingen waar mogelijk." } },
+        { "type": "value", "settings": { "icon": "🤝", "title": "Eerlijke service", "text": "30 dagen retourgarantie, 2 jaar productgarantie en een team dat echt bereikbaar is." } },
+        { "type": "value", "settings": { "icon": "📦", "title": "Snel geleverd", "text": "Gratis verzending op bestellingen boven €50, snel geleverd vanuit Nederland." } },
+        { "type": "value", "settings": { "icon": "💬", "title": "Luisteren naar reizigers", "text": "Onze producten worden continu verbeterd op basis van echte feedback van onze community." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

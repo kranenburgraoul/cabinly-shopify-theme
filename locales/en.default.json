@@ -1,0 +1,141 @@
+{
+  "general": {
+    "search": {
+      "search": "Search",
+      "placeholder": "Search products..."
+    },
+    "cart": {
+      "title": "Your cart",
+      "empty": "Your cart is empty.",
+      "note": "Order note",
+      "checkout": "Checkout",
+      "continue_shopping": "Continue shopping",
+      "shipping": "Shipping",
+      "taxes": "Taxes",
+      "total": "Total",
+      "subtotal": "Subtotal",
+      "item": "item",
+      "items": "items"
+    },
+    "newsletter": {
+      "label": "Email address",
+      "submit": "Subscribe",
+      "success": "Thank you for subscribing!"
+    },
+    "breadcrumb": {
+      "home": "Home"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "description": "Description",
+      "size_guide": "Size guide",
+      "share": "Share",
+      "from": "From",
+      "sale": "Sale",
+      "vendor": "Brand"
+    },
+    "general": {
+      "view_all": "View all",
+      "title": "Products"
+    }
+  },
+  "collections": {
+    "general": {
+      "title": "Collections",
+      "no_matches": "No products found."
+    }
+  },
+  "blogs": {
+    "article": {
+      "written_by": "By",
+      "read_more": "Read more",
+      "back_to_blog": "Back to blog"
+    }
+  },
+  "customer": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Login",
+      "forgot_password": "Forgot your password?",
+      "no_account": "New customer?"
+    },
+    "register": {
+      "title": "Create account",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create account",
+      "have_account": "Already have an account?"
+    },
+    "account": {
+      "title": "My account",
+      "orders": "Orders",
+      "addresses": "Addresses",
+      "logout": "Logout"
+    },
+    "order": {
+      "title": "Order",
+      "date": "Date",
+      "payment_status": "Payment status",
+      "fulfillment_status": "Fulfillment status",
+      "product": "Product",
+      "quantity": "Quantity",
+      "price": "Price",
+      "total": "Total"
+    },
+    "addresses": {
+      "title": "Your addresses",
+      "default": "Default",
+      "edit": "Edit",
+      "delete": "Delete",
+      "add_new": "Add new address",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "company": "Company",
+      "address1": "Address",
+      "address2": "Apt, suite, etc.",
+      "city": "City",
+      "country": "Country",
+      "province": "Province",
+      "zip": "Zip / postal code",
+      "phone": "Phone",
+      "set_default": "Set as default",
+      "cancel": "Cancel",
+      "save": "Save address"
+    }
+  },
+  "errors": {
+    "messages": {
+      "required": "can't be blank",
+      "email": "is invalid",
+      "bad_value": "is invalid"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "submit": "Send message"
+    }
+  },
+  "sections": {
+    "header": {
+      "cart": "Cart"
+    }
+  },
+  "404": {
+    "title": "Page not found",
+    "subtext": "The page you requested doesn't exist.",
+    "link": "Back to home"
+  }
+}

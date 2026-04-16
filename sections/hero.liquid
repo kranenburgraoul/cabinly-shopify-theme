@@ -1,0 +1,148 @@
+<section class="hero" id="hero-{{ section.id }}">
+  {%- if section.settings.background_image -%}
+    <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+      <img
+        src="{{ section.settings.background_image | image_url: width: 1800 }}"
+        alt="{{ section.settings.background_image.alt | default: shop.name }}"
+        loading="eager"
+        style="width:100%;height:100%;object-fit:cover;opacity:{{ section.settings.image_opacity | divided_by: 100.0 }};">
+    </div>
+  {%- endif -%}
+
+  <div class="page-width">
+    <div class="hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h1>
+          {{ section.settings.heading }}
+          {%- if section.settings.heading_bold != blank -%}
+            <strong>{{ section.settings.heading_bold }}</strong>
+          {%- endif -%}
+        </h1>
+      {%- endif -%}
+
+      {%- if section.settings.subtext != blank -%}
+        <p class="hero__sub">{{ section.settings.subtext }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.cta_label != blank or section.settings.cta_label_2 != blank -%}
+        <div class="hero__actions">
+          {%- if section.settings.cta_label != blank -%}
+            <a href="{{ section.settings.cta_link | default: routes.collections_url }}" class="btn btn-primary">
+              {{ section.settings.cta_label }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.cta_label_2 != blank -%}
+            <a href="{{ section.settings.cta_link_2 | default: routes.root_url }}" class="btn btn-outline">
+              {{ section.settings.cta_label_2 }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- unless section.settings.background_image -%}
+    <div class="hero__visual" aria-hidden="true">
+      <div class="hero__visual-inner">
+        <div class="hero__product-grid">
+          <div class="hero__product-tile">
+            <span class="hero__product-tile-icon">🧳</span>
+            <span class="hero__product-tile-name">Packing Cubes</span>
+          </div>
+          <div class="hero__product-tile">
+            <span class="hero__product-tile-icon">🪥</span>
+            <span class="hero__product-tile-name">Toiletry Bag</span>
+          </div>
+          <div class="hero__product-tile">
+            <span class="hero__product-tile-icon">🔌</span>
+            <span class="hero__product-tile-name">Travel Adapter</span>
+          </div>
+          <div class="hero__product-tile">
+            <span class="hero__product-tile-icon">😴</span>
+            <span class="hero__product-tile-name">Sleep Set</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endunless -%}
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Travel essentials"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading (italic part)",
+      "default": "Pack smarter."
+    },
+    {
+      "type": "text",
+      "id": "heading_bold",
+      "label": "Heading (bold part)",
+      "default": "Travel better."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Cabinly maakt reizen rustiger, overzichtelijker en comfortabeler — met essentials die écht werken."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Primary CTA label",
+      "default": "Shop collectie"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Primary CTA link"
+    },
+    {
+      "type": "text",
+      "id": "cta_label_2",
+      "label": "Secondary CTA label",
+      "default": "Ons verhaal"
+    },
+    {
+      "type": "url",
+      "id": "cta_link_2",
+      "label": "Secondary CTA link"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image (optional)",
+      "info": "If set, replaces the product grid visual."
+    },
+    {
+      "type": "range",
+      "id": "image_opacity",
+      "label": "Image opacity",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "default": 60,
+      "unit": "%"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

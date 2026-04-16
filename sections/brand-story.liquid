@@ -1,0 +1,109 @@
+<section class="brand-story section">
+  <div class="page-width">
+    <div class="brand-story__inner">
+      <div class="brand-story__text reveal">
+        {%- if section.settings.label != blank -%}
+          <p class="section-label">{{ section.settings.label }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2>{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text_1 != blank -%}
+          <p>{{ section.settings.text_1 }}</p>
+        {%- endif -%}
+        {%- if section.settings.text_2 != blank -%}
+          <p>{{ section.settings.text_2 }}</p>
+        {%- endif -%}
+        {%- if section.settings.cta_label != blank -%}
+          <a href="{{ section.settings.cta_link | default: '#' }}" class="btn btn-outline" style="margin-top:1rem;">
+            {{ section.settings.cta_label }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div class="brand-story__stats reveal reveal-d2">
+        {% for block in section.blocks %}
+          <div class="stat-tile" {{ block.shopify_attributes }}>
+            <div class="stat-tile__number">{{ block.settings.number }}</div>
+            <div class="stat-tile__label">{{ block.settings.label }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand story",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section label",
+      "default": "Ons verhaal"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Wij verkopen geen reisproducten."
+    },
+    {
+      "type": "textarea",
+      "id": "text_1",
+      "label": "Paragraph 1",
+      "default": "We helpen reizigers om met minder chaos, meer overzicht en meer gemak op reis te gaan. Dat is het verschil."
+    },
+    {
+      "type": "textarea",
+      "id": "text_2",
+      "label": "Paragraph 2",
+      "default": "Elk Cabinly product is ontworpen met één doel: jouw reis rustiger, slimmer en comfortabeler maken."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button label",
+      "default": "Lees ons verhaal"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number / value",
+          "default": "50k+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "tevreden reizigers"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand story",
+      "blocks": [
+        { "type": "stat", "settings": { "number": "50k+", "label": "tevreden reizigers" } },
+        { "type": "stat", "settings": { "number": "4.9★", "label": "gemiddelde review" } },
+        { "type": "stat", "settings": { "number": "150+", "label": "landen bereikbaar" } },
+        { "type": "stat", "settings": { "number": "8", "label": "essentiële producten" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

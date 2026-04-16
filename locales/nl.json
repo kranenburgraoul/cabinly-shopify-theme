@@ -1,0 +1,73 @@
+{
+  "general": {
+    "search": { "search": "Zoeken", "placeholder": "Zoek producten..." },
+    "cart": {
+      "title": "Winkelwagen",
+      "empty": "Uw winkelwagen is leeg.",
+      "note": "Opmerking bij bestelling",
+      "checkout": "Afrekenen",
+      "continue_shopping": "Verder winkelen",
+      "shipping": "Verzending",
+      "taxes": "Belasting",
+      "total": "Totaal",
+      "subtotal": "Subtotaal",
+      "item": "artikel",
+      "items": "artikelen"
+    },
+    "newsletter": {
+      "label": "E-mailadres",
+      "submit": "Aanmelden",
+      "success": "Bedankt voor uw aanmelding!"
+    },
+    "breadcrumb": { "home": "Home" }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Voeg toe aan winkelwagen",
+      "sold_out": "Uitverkocht",
+      "unavailable": "Niet beschikbaar",
+      "quantity": "Aantal",
+      "description": "Beschrijving",
+      "sale": "Aanbieding",
+      "vendor": "Merk"
+    },
+    "general": { "view_all": "Bekijk alles", "title": "Producten" }
+  },
+  "collections": {
+    "general": { "title": "Collecties", "no_matches": "Geen producten gevonden." }
+  },
+  "customer": {
+    "login": {
+      "title": "Inloggen",
+      "email": "E-mail",
+      "password": "Wachtwoord",
+      "submit": "Inloggen",
+      "forgot_password": "Wachtwoord vergeten?",
+      "no_account": "Nieuwe klant?"
+    },
+    "register": {
+      "title": "Account aanmaken",
+      "first_name": "Voornaam",
+      "last_name": "Achternaam",
+      "email": "E-mail",
+      "password": "Wachtwoord",
+      "submit": "Account aanmaken",
+      "have_account": "Al een account?"
+    },
+    "account": { "title": "Mijn account", "orders": "Bestellingen", "addresses": "Adressen", "logout": "Uitloggen" }
+  },
+  "contact": {
+    "form": {
+      "name": "Naam",
+      "email": "E-mail",
+      "phone": "Telefoon",
+      "message": "Bericht",
+      "submit": "Verstuur bericht"
+    }
+  },
+  "404": {
+    "title": "Pagina niet gevonden",
+    "subtext": "De pagina die u zoekt bestaat niet.",
+    "link": "Terug naar home"
+  }
+}

@@ -1,0 +1,168 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Cabinly",
+    "theme_version": "1.0.0",
+    "theme_author": "Cabinly",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_navy",
+        "label": "Primary (Navy)",
+        "default": "#1F3554",
+        "info": "Used for headers, buttons, and key elements."
+      },
+      {
+        "type": "color",
+        "id": "color_sand",
+        "label": "Background (Sand)",
+        "default": "#F5F1E8",
+        "info": "Main page background."
+      },
+      {
+        "type": "color",
+        "id": "color_charcoal",
+        "label": "Dark (Charcoal)",
+        "default": "#2B2B2B",
+        "info": "Body text and dark sections."
+      },
+      {
+        "type": "color",
+        "id": "color_olive",
+        "label": "Accent (Olive)",
+        "default": "#7A826A",
+        "info": "Accent color for badges, icons, and highlights."
+      },
+      {
+        "type": "color",
+        "id": "color_stone",
+        "label": "Subtle (Stone Grey)",
+        "default": "#D9D4CB",
+        "info": "Borders, card backgrounds, and dividers."
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading font",
+        "default": "cormorant_garamond_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body font",
+        "default": "outfit_n4"
+      },
+      {
+        "type": "range",
+        "id": "font_size_base",
+        "label": "Base font size (px)",
+        "min": 14,
+        "max": 18,
+        "step": 1,
+        "default": 16
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "select",
+        "id": "page_width",
+        "label": "Page width",
+        "options": [
+          { "value": "1100px", "label": "Narrow (1100px)" },
+          { "value": "1200px", "label": "Normal (1200px)" },
+          { "value": "1400px", "label": "Wide (1400px)" }
+        ],
+        "default": "1200px"
+      }
+    ]
+  },
+  {
+    "name": "Logo & Branding",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo",
+        "info": "Upload your logo image. Recommended size: 200×60px."
+      },
+      {
+        "type": "range",
+        "id": "logo_height",
+        "label": "Logo height (px)",
+        "min": 24,
+        "max": 80,
+        "step": 4,
+        "default": 40
+      },
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Brand name (if no logo)",
+        "default": "Cabinly"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart type",
+        "options": [
+          { "value": "page", "label": "Cart page" },
+          { "value": "notification", "label": "Notification" }
+        ],
+        "default": "page"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "url",
+        "id": "social_pinterest",
+        "label": "Pinterest URL"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image"
+      }
+    ]
+  }
+]
