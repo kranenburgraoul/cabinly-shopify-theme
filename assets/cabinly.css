@@ -725,15 +725,23 @@ p  { font-size: clamp(0.9rem, 1.5vw, 1rem); line-height: 1.75; color: #4a4a4a; }
 .value-card p { font-size: .88rem; }
 
 /* ── Stats Row ──────────────────────────────────── */
-.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center; }
-.stats-row > * { min-width: 0; padding: 1.5rem 0.5rem; }
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  text-align: center;
+}
+.stat-item {
+  padding: 2rem 1rem;
+  min-width: 0;
+}
 .stat-item__number {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
   font-weight: 300;
   color: var(--color-navy);
   line-height: 1;
-  word-break: break-word;
+  white-space: nowrap;
 }
 .stat-item__label { font-size: .78rem; letter-spacing: .06em; color: var(--color-olive); text-transform: uppercase; margin-top: .5rem; }
 
@@ -1067,7 +1075,7 @@ p  { font-size: clamp(0.9rem, 1.5vw, 1rem); line-height: 1.75; color: #4a4a4a; }
 @media (max-width: 1024px) {
   .product-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -1113,5 +1121,5 @@ p  { font-size: clamp(0.9rem, 1.5vw, 1rem); line-height: 1.75; color: #4a4a4a; }
   .footer-grid { grid-template-columns: 1fr; }
   .hero__actions { flex-direction: column; }
   .hero__actions .btn { width: 100%; justify-content: center; }
-  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
 }
