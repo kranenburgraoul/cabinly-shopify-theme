@@ -87,7 +87,7 @@ p  { font-size: clamp(0.9rem, 1.5vw, 1rem); line-height: 1.75; color: #4a4a4a; }
 /* ── Announcement Bar ──────────────────────────── */
 .announcement-bar {
   background: var(--color-navy);
-  color: var(--color-stone);
+  color: #fff;
   text-align: center;
   padding: .55rem 1rem;
   font-size: .77rem;
@@ -95,8 +95,8 @@ p  { font-size: clamp(0.9rem, 1.5vw, 1rem); line-height: 1.75; color: #4a4a4a; }
   position: relative;
   z-index: 20;
 }
-.announcement-bar strong { color: var(--color-sand); font-weight: 500; }
-.announcement-bar a { color: var(--color-sand); text-decoration: underline; }
+.announcement-bar strong { color: #fff; font-weight: 600; }
+.announcement-bar a { color: #fff; text-decoration: underline; }
 .announcement-bar__close {
   position: absolute;
   right: 1rem;
