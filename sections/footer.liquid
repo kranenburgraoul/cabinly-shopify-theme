@@ -1,64 +1,404 @@
 <footer class="site-footer" role="contentinfo">
-  <div class="page-width">
-    <div class="footer-grid">
 
-      <!-- Brand -->
-      <div class="footer-brand">
-        <a href="{{ routes.root_url }}" class="header__logo" aria-label="{{ shop.name }}">
-          {% if settings.logo %}
-            <img src="{{ settings.logo | image_url: height: 36 }}" alt="{{ shop.name }}" style="max-height:36px;filter:brightness(10);">
-          {% else %}
-            {%- assign brand = settings.brand_name | default: shop.name -%}
-            {{ brand | slice: 0, brand.size | minus: 2 }}<span>{{ brand | slice: brand.size | minus: 2, 2 }}</span>
-          {% endif %}
-        </a>
-        {% if section.settings.brand_description != blank %}
-          <p>{{ section.settings.brand_description }}</p>
-        {% endif %}
-      </div>
-
-      <!-- Menu columns -->
-      {% for i in (1..3) %}
-        {%- assign menu_id = 'menu_' | append: i -%}
-        {%- assign title_id = 'menu_title_' | append: i -%}
-        {%- if section.settings[menu_id] != blank -%}
-          <div class="footer-col">
-            <h5>{{ section.settings[title_id] }}</h5>
-            <ul role="list">
-              {% for link in linklists[section.settings[menu_id]].links %}
-                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-              {% endfor %}
-            </ul>
+  <!-- Newsletter bar -->
+  <div class="footer-newsletter">
+    <div class="page-width">
+      <div class="footer-newsletter__inner">
+        <div class="footer-newsletter__text">
+          <span class="footer-newsletter__label">Reistips & exclusieve deals</span>
+          <p class="footer-newsletter__heading">Schrijf je in en ontvang <strong>10% korting</strong> op je eerste bestelling.</p>
+        </div>
+        <form class="footer-newsletter__form" action="/contact#newsletter" method="post" accept-charset="UTF-8">
+          <input type="hidden" name="form_type" value="customer">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="footer-newsletter__field">
+            <input
+              type="email"
+              name="contact[email]"
+              class="footer-newsletter__input"
+              placeholder="jouw@email.nl"
+              required
+              autocomplete="email">
+            <button type="submit" class="footer-newsletter__btn">
+              Inschrijven
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
           </div>
-        {%- endif -%}
-      {% endfor %}
-
-    </div>
-
-    <div class="footer-bottom">
-      <p>
-        &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}.
-        {% if section.settings.copyright_text != blank %}
-          {{ section.settings.copyright_text }}
-        {% endif %}
-      </p>
-      <div class="footer-socials">
-        {% if settings.social_instagram != blank %}
-          <a href="{{ settings.social_instagram }}" rel="noopener" target="_blank">Instagram</a>
-        {% endif %}
-        {% if settings.social_tiktok != blank %}
-          <a href="{{ settings.social_tiktok }}" rel="noopener" target="_blank">TikTok</a>
-        {% endif %}
-        {% if settings.social_pinterest != blank %}
-          <a href="{{ settings.social_pinterest }}" rel="noopener" target="_blank">Pinterest</a>
-        {% endif %}
-        {% if settings.social_facebook != blank %}
-          <a href="{{ settings.social_facebook }}" rel="noopener" target="_blank">Facebook</a>
-        {% endif %}
+          <p class="footer-newsletter__disclaimer">Geen spam. Uitschrijven kan altijd.</p>
+        </form>
       </div>
     </div>
   </div>
+
+  <!-- Main footer -->
+  <div class="footer-main">
+    <div class="page-width">
+      <div class="footer-grid">
+
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <a href="{{ routes.root_url }}" class="footer-brand__logo" aria-label="{{ shop.name }}">
+            {% if settings.logo %}
+              <img src="{{ settings.logo | image_url: height: 36 }}" alt="{{ shop.name }}" style="max-height:36px;filter:brightness(10);">
+            {% else %}
+              {%- assign brand = settings.brand_name | default: shop.name -%}
+              {%- assign brand_end = brand.size | minus: 2 -%}
+              {{ brand | slice: 0, brand_end }}<span>{{ brand | slice: brand_end, 2 }}</span>
+            {% endif %}
+          </a>
+
+          {% if section.settings.brand_description != blank %}
+            <p class="footer-brand__desc">{{ section.settings.brand_description }}</p>
+          {% endif %}
+
+          <!-- Social links -->
+          <div class="footer-socials">
+            {% if settings.social_instagram != blank %}
+              <a href="{{ settings.social_instagram }}" rel="noopener" target="_blank" class="footer-social__link" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+            {% endif %}
+            {% if settings.social_tiktok != blank %}
+              <a href="{{ settings.social_tiktok }}" rel="noopener" target="_blank" class="footer-social__link" aria-label="TikTok">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.97a8.22 8.22 0 0 0 4.81 1.54V7.07a4.85 4.85 0 0 1-1.04-.38z"/></svg>
+              </a>
+            {% endif %}
+            {% if settings.social_pinterest != blank %}
+              <a href="{{ settings.social_pinterest }}" rel="noopener" target="_blank" class="footer-social__link" aria-label="Pinterest">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.13 9.45 7.63 11.24-.1-.94-.2-2.38.04-3.41.22-.93 1.48-6.26 1.48-6.26s-.38-.76-.38-1.88c0-1.76 1.02-3.08 2.29-3.08 1.08 0 1.6.81 1.6 1.79 0 1.09-.69 2.72-1.05 4.23-.3 1.26.63 2.29 1.87 2.29 2.24 0 3.97-2.36 3.97-5.77 0-3.02-2.17-5.13-5.27-5.13-3.59 0-5.7 2.69-5.7 5.48 0 1.08.42 2.24.94 2.87.1.12.12.23.08.35-.1.4-.31 1.26-.35 1.44-.06.23-.2.28-.46.17-1.66-.77-2.7-3.2-2.7-5.15 0-4.19 3.05-8.04 8.79-8.04 4.62 0 8.2 3.29 8.2 7.68 0 4.58-2.89 8.27-6.9 8.27-1.35 0-2.62-.7-3.05-1.53l-.83 3.1c-.3 1.16-1.11 2.61-1.65 3.49C10.8 23.93 11.4 24 12 24c6.63 0 12-5.37 12-12S18.63 0 12 0z"/></svg>
+              </a>
+            {% endif %}
+            {% if settings.social_facebook != blank %}
+              <a href="{{ settings.social_facebook }}" rel="noopener" target="_blank" class="footer-social__link" aria-label="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Menu columns -->
+        {% for i in (1..3) %}
+          {%- assign menu_id = 'menu_' | append: i -%}
+          {%- assign title_id = 'menu_title_' | append: i -%}
+          {%- if section.settings[menu_id] != blank -%}
+            <div class="footer-col">
+              <h5 class="footer-col__heading">{{ section.settings[title_id] }}</h5>
+              <ul class="footer-col__list" role="list">
+                {% for link in linklists[section.settings[menu_id]].links %}
+                  <li><a href="{{ link.url }}" class="footer-col__link">{{ link.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          {%- endif -%}
+        {% endfor %}
+
+      </div>
+
+      <!-- Trust bar -->
+      <div class="footer-trust">
+        <div class="footer-trust__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Beveiligde betaling</span>
+        </div>
+        <div class="footer-trust__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Gratis verzending v.a. €50</span>
+        </div>
+        <div class="footer-trust__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.56"/></svg>
+          <span>30 dagen retour</span>
+        </div>
+        <div class="footer-trust__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Binnen 1 werkdag antwoord</span>
+        </div>
+      </div>
+
+      <!-- Payment icons -->
+      <div class="footer-payments">
+        <span class="footer-payments__label">Betaalopties</span>
+        <div class="footer-payments__icons">
+          <span class="footer-payment-icon" title="iDEAL">
+            <svg width="38" height="24" viewBox="0 0 38 24" fill="none"><rect width="38" height="24" rx="4" fill="#fff" fill-opacity=".08"/><text x="50%" y="15" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.6)" font-family="sans-serif">iDEAL</text></svg>
+          </span>
+          <span class="footer-payment-icon" title="Visa">
+            <svg width="38" height="24" viewBox="0 0 38 24" fill="none"><rect width="38" height="24" rx="4" fill="#fff" fill-opacity=".08"/><text x="50%" y="15" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.6)" font-family="sans-serif">VISA</text></svg>
+          </span>
+          <span class="footer-payment-icon" title="Mastercard">
+            <svg width="38" height="24" viewBox="0 0 38 24" fill="none"><rect width="38" height="24" rx="4" fill="#fff" fill-opacity=".08"/><text x="50%" y="15" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.6)" font-family="sans-serif">MC</text></svg>
+          </span>
+          <span class="footer-payment-icon" title="PayPal">
+            <svg width="38" height="24" viewBox="0 0 38 24" fill="none"><rect width="38" height="24" rx="4" fill="#fff" fill-opacity=".08"/><text x="50%" y="15" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.6)" font-family="sans-serif">PayPal</text></svg>
+          </span>
+          <span class="footer-payment-icon" title="Klarna">
+            <svg width="38" height="24" viewBox="0 0 38 24" fill="none"><rect width="38" height="24" rx="4" fill="#fff" fill-opacity=".08"/><text x="50%" y="15" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.6)" font-family="sans-serif">Klarna</text></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <p class="footer-bottom__copy">
+          &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}.
+          {% if section.settings.copyright_text != blank %}{{ section.settings.copyright_text }}{% endif %}
+        </p>
+        <nav class="footer-bottom__legal" aria-label="Legal">
+          <a href="/policies/privacy-policy">Privacybeleid</a>
+          <a href="/policies/terms-of-service">Algemene voorwaarden</a>
+          <a href="/policies/refund-policy">Retourbeleid</a>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+
 </footer>
+
+<style>
+  /* ── Footer Newsletter ───────────────────────────── */
+  .footer-newsletter {
+    background: var(--color-olive, #7A826A);
+    padding: 4rem 0;
+  }
+  .footer-newsletter__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .footer-newsletter__label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 0.5rem;
+  }
+  .footer-newsletter__heading {
+    font-family: var(--font-heading), 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+    color: #fff;
+    line-height: 1.3;
+    margin: 0;
+  }
+  .footer-newsletter__field {
+    display: flex;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 3px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(4px);
+  }
+  .footer-newsletter__input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0.85rem 1.2rem;
+    color: #fff;
+    font-size: 0.9rem;
+    outline: none;
+  }
+  .footer-newsletter__input::placeholder { color: rgba(255,255,255,0.5); }
+  .footer-newsletter__btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.4rem;
+    background: #fff;
+    color: var(--color-olive, #7A826A);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .footer-newsletter__btn:hover { background: var(--color-sand, #F5F1E8); }
+  .footer-newsletter__disclaimer {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    margin: 0.6rem 0 0;
+  }
+
+  /* ── Footer Main ──────────────────────────────────── */
+  .footer-main {
+    background: var(--color-navy, #1F3554);
+    padding: 5rem 0 0;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(3, 1fr);
+    gap: 3rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-brand__logo {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-heading), 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.2rem;
+  }
+  .footer-brand__logo span { color: var(--color-olive, #7A826A); }
+  .footer-brand__desc {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 1.8rem;
+    max-width: 26ch;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 0.6rem;
+  }
+  .footer-social__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .footer-social__link:hover {
+    border-color: var(--color-olive, #7A826A);
+    color: #fff;
+    background: rgba(122,130,106,0.2);
+  }
+
+  .footer-col__heading {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1.2rem;
+  }
+  .footer-col__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+  .footer-col__link {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .footer-col__link:hover { color: #fff; }
+
+  /* ── Trust bar ─────────────────────────────────────── */
+  .footer-trust {
+    display: flex;
+    gap: 2.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    flex-wrap: wrap;
+  }
+  .footer-trust__item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.82rem;
+  }
+  .footer-trust__item svg { flex-shrink: 0; }
+
+  /* ── Payments ──────────────────────────────────────── */
+  .footer-payments {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    flex-wrap: wrap;
+  }
+  .footer-payments__label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-right: 0.5rem;
+  }
+  .footer-payments__icons { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .footer-payment-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  /* ── Bottom bar ────────────────────────────────────── */
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.6rem 0 2rem;
+    flex-wrap: wrap;
+  }
+  .footer-bottom__copy {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    margin: 0;
+  }
+  .footer-bottom__legal {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .footer-bottom__legal a {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-bottom__legal a:hover { color: rgba(255,255,255,0.7); }
+
+  /* ── Responsive ────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .footer-newsletter__inner {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-trust { gap: 1.2rem; }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
 
 {% schema %}
 {

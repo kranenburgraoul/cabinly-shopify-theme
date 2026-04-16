@@ -9,12 +9,12 @@
             src="{{ settings.logo | image_url: height: settings.logo_height }}"
             alt="{{ shop.name }}"
             style="max-height: {{ settings.logo_height }}px;"
-            width="{{ settings.logo | image_url: height: settings.logo_height | split: 'width=' | last | split: '&' | first }}"
             height="{{ settings.logo_height }}"
             loading="eager">
         {% else %}
           {%- assign brand = settings.brand_name | default: shop.name -%}
-          {{ brand | slice: 0, brand.size | minus: 2 }}<span>{{ brand | slice: brand.size | minus: 2, 2 }}</span>
+          {%- assign brand_end = brand.size | minus: 2 -%}
+          {{ brand | slice: 0, brand_end }}<span>{{ brand | slice: brand_end, 2 }}</span>
         {% endif %}
       </a>
 
