@@ -9,7 +9,14 @@
         "subtext": "Cabinly maakt reizen rustiger, overzichtelijker en comfortabeler — met essentials die écht werken.",
         "cta_label": "Shop collectie",
         "cta_label_2": "Ons verhaal"
-      }
+      },
+      "blocks": {
+        "tile_1": { "type": "product_tile", "settings": { "icon": "🧳", "name": "Packing Cubes" } },
+        "tile_2": { "type": "product_tile", "settings": { "icon": "🪥", "name": "Toiletry Bag" } },
+        "tile_3": { "type": "product_tile", "settings": { "icon": "🔌", "name": "Travel Adapter" } },
+        "tile_4": { "type": "product_tile", "settings": { "icon": "😴", "name": "Sleep Set" } }
+      },
+      "block_order": ["tile_1", "tile_2", "tile_3", "tile_4"]
     },
     "trust_bar": {
       "type": "trust-bar",

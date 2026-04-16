@@ -5,12 +5,33 @@
     "footer": {
       "type": "footer",
       "settings": {
+        "show_newsletter": true,
+        "newsletter_label": "Reistips & exclusieve deals",
+        "newsletter_heading": "Schrijf je in en ontvang 10% korting op je eerste bestelling.",
+        "newsletter_placeholder": "jouw@email.nl",
+        "newsletter_button": "Inschrijven",
+        "newsletter_disclaimer": "Geen spam. Uitschrijven kan altijd.",
         "brand_description": "Premium travel essentials voor reizigers die slimmer willen inpakken en comfortabeler willen reizen.",
         "menu_title_1": "Shop",
         "menu_title_2": "Info",
         "menu_title_3": "Service",
+        "show_payment_icons": true,
+        "payment_label": "Betaalopties",
+        "legal_link_1_label": "Privacybeleid",
+        "legal_link_1_url": "/policies/privacy-policy",
+        "legal_link_2_label": "Algemene voorwaarden",
+        "legal_link_2_url": "/policies/terms-of-service",
+        "legal_link_3_label": "Retourbeleid",
+        "legal_link_3_url": "/policies/refund-policy",
         "copyright_text": "Alle rechten voorbehouden."
-      }
+      },
+      "blocks": {
+        "trust_1": { "type": "trust_item", "settings": { "icon": "shield", "text": "Beveiligde betaling" } },
+        "trust_2": { "type": "trust_item", "settings": { "icon": "pin", "text": "Gratis verzending v.a. \u20ac50" } },
+        "trust_3": { "type": "trust_item", "settings": { "icon": "return", "text": "30 dagen retour" } },
+        "trust_4": { "type": "trust_item", "settings": { "icon": "clock", "text": "Binnen 1 werkdag antwoord" } }
+      },
+      "block_order": ["trust_1", "trust_2", "trust_3", "trust_4"]
     }
   },
   "order": ["footer"]

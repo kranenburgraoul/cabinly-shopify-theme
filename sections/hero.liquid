@@ -46,28 +46,21 @@
   </div>
 
   {%- unless section.settings.background_image -%}
-    <div class="hero__visual" aria-hidden="true">
-      <div class="hero__visual-inner">
-        <div class="hero__product-grid">
-          <div class="hero__product-tile">
-            <span class="hero__product-tile-icon">🧳</span>
-            <span class="hero__product-tile-name">Packing Cubes</span>
-          </div>
-          <div class="hero__product-tile">
-            <span class="hero__product-tile-icon">🪥</span>
-            <span class="hero__product-tile-name">Toiletry Bag</span>
-          </div>
-          <div class="hero__product-tile">
-            <span class="hero__product-tile-icon">🔌</span>
-            <span class="hero__product-tile-name">Travel Adapter</span>
-          </div>
-          <div class="hero__product-tile">
-            <span class="hero__product-tile-icon">😴</span>
-            <span class="hero__product-tile-name">Sleep Set</span>
+    {%- assign tile_blocks = section.blocks | where: 'type', 'product_tile' -%}
+    {%- if tile_blocks.size > 0 -%}
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero__visual-inner">
+          <div class="hero__product-grid">
+            {% for block in tile_blocks %}
+              <div class="hero__product-tile" {{ block.shopify_attributes }}>
+                <span class="hero__product-tile-icon">{{ block.settings.icon }}</span>
+                <span class="hero__product-tile-name">{{ block.settings.name }}</span>
+              </div>
+            {% endfor %}
           </div>
         </div>
       </div>
-    </div>
+    {%- endif -%}
   {%- endunless -%}
 </section>
 
@@ -139,9 +132,35 @@
       "unit": "%"
     }
   ],
+  "blocks": [
+    {
+      "type": "product_tile",
+      "name": "Product tegel",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji icoon",
+          "default": "🧳"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Naam",
+          "default": "Packing Cubes"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Hero"
+      "name": "Hero",
+      "blocks": [
+        { "type": "product_tile", "settings": { "icon": "🧳", "name": "Packing Cubes" } },
+        { "type": "product_tile", "settings": { "icon": "🪥", "name": "Toiletry Bag" } },
+        { "type": "product_tile", "settings": { "icon": "🔌", "name": "Travel Adapter" } },
+        { "type": "product_tile", "settings": { "icon": "😴", "name": "Sleep Set" } }
+      ]
     }
   ]
 }
